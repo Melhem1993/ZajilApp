@@ -17,7 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.bridgefy.samples.twitter.db.AppDatabase;
+//import com.bridgefy.samples.twitter.db.AppDatabase;
 import com.bridgefy.samples.twitter.entities.Tweet;
 import com.bridgefy.sdk.client.Bridgefy;
 import com.bridgefy.sdk.client.BridgefyClient;
@@ -35,7 +35,8 @@ public class IntroActivity extends AppCompatActivity {
 
     private String TAG = "IntroActivity";
     static final String INTENT_USERNAME = "peerName";
-    String username;
+    static final String INTENT_TARGET = "targetname";
+    String username,device,target;
 
     @BindView(R.id.txt_username)
     public EditText txtUsername;
@@ -51,9 +52,24 @@ public class IntroActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         // set a default name
-        username = Build.MODEL.split(" ")[0].length() >= 7 ?
+        device = Build.MODEL.split(" ")[0].length() >= 7 ?
                 Build.MODEL.split(" ")[0] : Build.MODEL.replaceAll("\\s","");
-        txtUsername.setText(username);;
+        switch(device){
+            case "SM-G955F":
+                username="Abdulrahman";
+                break;
+            case "SM-G920I":
+                username="Ali";
+                break;
+            case "HUAWEIMLA-L11":
+                username="Campaign Manager";
+                break;
+            default:
+
+
+        }
+        txtUsername.setText(username);
+        target= "broadcast";
 
 
 
@@ -107,8 +123,9 @@ public class IntroActivity extends AppCompatActivity {
                 username = usernameInput;
 
             // start the TimelineActivity
-            startActivity(new Intent(getBaseContext(), TimelineActivity.class)
-                              .putExtra(INTENT_USERNAME, username));
+            startActivity(new Intent(getBaseContext(), MainActivity.class)
+                              .putExtra(INTENT_USERNAME, username)
+                                .putExtra(INTENT_TARGET, target));
         }
 
         @Override

@@ -16,14 +16,16 @@ public class Tweet {
 
     // protocol
     private String id;
+    private String targetid;
     private long date;
     private String content;
     private String sender;
     private boolean posted;
 
 
-    public Tweet(String content, String sender) {
+    public Tweet(String content, String sender,String targetid) {
         this.id = UUID.randomUUID().toString().substring(0, 5);
+        this.targetid=targetid;
         this.content = content;
         this.sender = sender;
         this.posted = false;
@@ -60,6 +62,15 @@ public class Tweet {
     public void setId(String id) {
         this.id = id;
     }
+
+    public String gettargetId() {
+        return targetid;
+    }
+
+    public void settargetid(String targetid) {
+        this.targetid = targetid;
+    }
+
 
     public boolean isPosted() {
         return posted;

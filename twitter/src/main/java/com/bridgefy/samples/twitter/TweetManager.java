@@ -1,14 +1,22 @@
 package com.bridgefy.samples.twitter;
 
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.bridgefy.samples.twitter.entities.Tweet;
 import com.bridgefy.sdk.client.Bridgefy;
 import com.bridgefy.sdk.client.Message;
 import com.bridgefy.sdk.client.MessageListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -56,20 +64,50 @@ class TweetManager extends MessageListener {
     }
 
     private class PostTweetsAsyncTask extends AsyncTask<Tweet, Void, Tweet> {
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
         @Override
         protected Tweet doInBackground(Tweet... tweets) {
             Tweet tweet = tweets[0];
 
-            if (isGateway()) {
+            if (isGateway() && tweet.gettargetId().equals("Web")) {
                 try {
+
+                    // Create a new user with a first and last name
+                    Map<String, Object> user = new HashMap<>();
+                    user.put("sender", tweet.getSender());
+                    user.put("msg", tweet.getContent());
+                    user.put("date", Calendar.getInstance().getTime());
+                    user.put("targetId", tweet.gettargetId());
+
+// Add a new document with a generated ID
+                    db.collection("users")
+                            .add(user)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w(TAG, "Error adding document", e);
+                                }
+                            });
+
+
+
+
+
                     // post the status online
-                    twitter4j.Status status = twitter.updateStatus("#" + tweet.getSender() + " " + tweet.getContent());
+                    //==twitter4j.Status status = twitter.updateStatus("#" + tweet.getSender() + " " + tweet.getContent());
                     tweet.setPosted(true);
 
                     // add the tweet to our control list
                     mPostedTweets.add(tweet);
-                    Log.d(TAG, "Tweet posted successfuly, status: http://twitter.com/statuses/" + status.getId());
-                } catch (TwitterException te) {
+                    //== Log.d(TAG, "Tweet posted successfuly, status: http://twitter.com/statuses/" + status.getId());
+                } catch (Exception te) {//TwitterException te/
                     Log.w(TAG, "Tweet wasn't posted: " + te.getMessage());
                 }
             }

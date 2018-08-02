@@ -29,12 +29,14 @@ import com.bridgefy.sdk.client.Bridgefy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.bridgefy.samples.twitter.IntroActivity.INTENT_USERNAME;
+import static com.bridgefy.samples.twitter.IntroActivity.INTENT_TARGET;
 import static com.bridgefy.samples.twitter.NetworkStateReceiver.WIFI_STATE_CONNECTED;
 
 
@@ -42,7 +44,7 @@ public class TimelineActivity extends AppCompatActivity implements TweetManager.
 
     private String TAG = "TimelineActivity";
 
-    private String username;
+    private String username,target;
 
     @BindView(R.id.txtTweet)
     EditText txtMessage;
@@ -62,6 +64,7 @@ public class TimelineActivity extends AppCompatActivity implements TweetManager.
 
         // recover our username and set the maximum tweet size
         username = getIntent().getStringExtra(INTENT_USERNAME);
+        target = getIntent().getStringExtra(INTENT_TARGET);
         txtMessage.setFilters(new InputFilter[] { new InputFilter.LengthFilter(138 - username.length()) });
 
         // Configure the Toolbar
@@ -127,10 +130,11 @@ public class TimelineActivity extends AppCompatActivity implements TweetManager.
         String messageString = txtMessage.getText().toString();
         if (messageString.trim().length() > 0) {
             // create the Tweet object to send
-            Tweet tweet = new Tweet(messageString, username);
+            Tweet tweet = new Tweet(messageString, username,target);
 
             // update the views
             txtMessage.setText("");
+
             tweetsAdapter.addTweet(tweet);
 
             // send the tweet
@@ -140,7 +144,17 @@ public class TimelineActivity extends AppCompatActivity implements TweetManager.
 
     @Override
     public void onTweetReceived(Tweet tweet) {
-        tweetsAdapter.addTweet(tweet);
+        if (tweet.gettargetId().equals("CampaignBroadcast") && (username.equals("Abdulrahman") || (username.equals("Ali")))) {
+            tweetsAdapter.addTweet(tweet);
+        }
+
+        else
+            {
+            if(tweet.gettargetId().equals(username) && tweet.getSender().equals(target))
+            {
+                tweetsAdapter.addTweet(tweet);
+            }
+        }
     }
 
     @Override

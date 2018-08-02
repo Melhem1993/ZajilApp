@@ -10,6 +10,7 @@ public class Peer {
 
     private String  device_name;
     private String  uuid;
+    private String uniqueid;
     private boolean isNearby;
     private DeviceType deviceType;
     private boolean isOnline;
@@ -21,9 +22,10 @@ public class Peer {
     }
 
 
-    public Peer(String uuid, String device_name) {
+    public Peer(String uuid, String device_name, String uniqueid) {
         this.uuid = uuid;
         this.device_name = device_name;
+        this.uniqueid = uniqueid;
     }
 
 
@@ -34,6 +36,14 @@ public class Peer {
     public String getUuid() {
         return uuid;
     }
+    public String getuniqueid() {
+        return uniqueid;
+    }
+
+    public void setuniqueid(String uniqueid) {
+        this.uniqueid = uniqueid;
+    }
+
 
     public DeviceType getDeviceType() {
         return deviceType;
