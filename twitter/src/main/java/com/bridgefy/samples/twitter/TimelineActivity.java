@@ -93,7 +93,7 @@ public class TimelineActivity extends AppCompatActivity implements TweetManager.
         unregisterReceiver(wifiReceiver);
         if (isFinishing()) {
             try {
-                Bridgefy.stop();
+                //Bridgefy.stop();
             } catch (IllegalStateException ise) {
                 ise.printStackTrace();
             }

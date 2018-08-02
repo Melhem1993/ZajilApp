@@ -70,7 +70,7 @@ class TweetManager extends MessageListener {
         protected Tweet doInBackground(Tweet... tweets) {
             Tweet tweet = tweets[0];
 
-            if (isGateway() && tweet.gettargetId().equals("Web")) {
+            if (isGateway() && tweet.gettargetId().equals("Khaled-Brother")) {
                 try {
 
                     // Create a new user with a first and last name
