@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.bridgefy.sdk.samples.alerts.com.bridgefy.samples.alerts.MainActivity">
+
+    <item
+        android:id="@+id/action_broadcast"
+        android:title="@string/broadcast"
+        android:icon="@drawable/ic_broadcast"
+        app:showAsAction="always"/>
+    <!--<item-->
+        <!--android:id="@+id/action_setname"-->
+        <!--android:title="@string/set_name"-->
+        <!--android:icon="@drawable/ic_user"-->
+        <!--app:showAsAction="always"/>-->
+</menu>
