@@ -30,12 +30,6 @@
                 android:layout_height="32dp"
                 android:layout_gravity="right"
                 android:src="@drawable/ic_help"/>
-            <ImageView
-                android:id="@+id/ContactUsers"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_gravity="right"
-                android:src="@drawable/ic_user"/>
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>

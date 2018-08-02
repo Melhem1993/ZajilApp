@@ -118,12 +118,12 @@ public class TimelineActivity extends AppCompatActivity implements TweetManager.
     public void onGatewayHelpTap(View v) {
         Toast.makeText(this, "Toggle this switch if you want this device to act as a Twitter gateway", Toast.LENGTH_LONG).show();
     }
-    @OnClick(R.id.ContactUsers)
-    public void onContactUsersTap(View v) {
-        startActivity(new Intent(getBaseContext(), MainActivity.class)
-                .putExtra(INTENT_USERNAME, username));
+//    @OnClick(R.id.ContactUsers)
+//    public void onContactUsersTap(View v) {
+//        startActivity(new Intent(getBaseContext(), MainActivity.class)
+//                .putExtra(INTENT_USERNAME, username));
 
-    }
+//    }
     @OnClick({R.id.btnSubmit})
     public void onSubmitTweet(View v) {
         // get the tweet and push it to the views

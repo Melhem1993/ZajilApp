@@ -150,11 +150,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_broadcast:
-                startActivity(new Intent(getBaseContext(), TimelineActivity.class)
-                        .putExtra(INTENT_USERNAME, name)
-                        .putExtra(INTENT_TARGET, "broadcast"));
-                return true;
+//            case R.id.action_broadcast:
+//                startActivity(new Intent(getBaseContext(), TimelineActivity.class)
+//                        .putExtra(INTENT_USERNAME, name)
+//                        .putExtra(INTENT_TARGET, "broadcast"));
+//                return true;
 
 //            case R.id.action_setname:
 //                getname();
