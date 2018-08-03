@@ -17,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.InputFilter;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -71,8 +72,42 @@ public class TimelineActivity extends AppCompatActivity implements TweetManager.
         // Configure the Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        gatewaySwitch.setChecked(true);
+        gatewaySwitch.setChecked(false);
         getSupportActionBar().setTitle(target);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //getSupportActionBar().setIcon(R.drawable.user1);
+
+        if(target.equals("CampaignManager"))
+        {
+
+            //this.mContentView.setTextColor(Color.BLUE);
+            //this.mContentView.setTypeface(null, Typeface.BOLD);
+
+            getSupportActionBar().setLogo(R.drawable.user1s);
+
+        }
+        if(target.equals("CampaignBroadcast"))
+        {
+
+            getSupportActionBar().setLogo(R.drawable.cast1s);
+        }
+
+        if(target.equals("Ali"))
+        {
+
+            getSupportActionBar().setLogo(R.drawable.user2s);
+        }
+
+        if(target.equals("Abdulrahman"))
+        {
+
+            getSupportActionBar().setLogo(R.drawable.user3s);
+        }
+        if(target.equals("Khaled-Brother")) {
+
+            getSupportActionBar().setLogo(R.drawable.user4s);
+        }
+
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        // configure the recyclerview
         RecyclerView tweetsRecyclerView = findViewById(R.id.tweet_list);
@@ -89,6 +124,7 @@ public class TimelineActivity extends AppCompatActivity implements TweetManager.
         registerReceiver(wifiReceiver,
                 new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
     }
+
 
     @Override
     protected void onDestroy() {
@@ -116,6 +152,12 @@ public class TimelineActivity extends AppCompatActivity implements TweetManager.
             flushTweets();
     }
 
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.menu_main, menu);
+//        return true;
+//    }
 //    @OnClick(R.id.gatewayHelp)
 //    public void onGatewayHelpTap(View v) {
 //        Toast.makeText(this, "Toggle this switch if you want this device to act as a Twitter gateway", Toast.LENGTH_LONG).show();
