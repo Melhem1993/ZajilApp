@@ -35,10 +35,10 @@
 
         <activity
             android:name="com.bridgefy.samples.twitter.TimelineActivity"
-            android:parentActivityName="com.bridgefy.samples.twitter.IntroActivity">
+            android:parentActivityName="com.bridgefy.samples.twitter.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.bridgefy.samples.twitter.IntroActivity" />
+                android:value="com.bridgefy.samples.twitter.MainActivity" />
         </activity>
 
         <activity

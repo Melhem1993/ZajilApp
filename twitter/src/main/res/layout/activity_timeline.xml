@@ -2,6 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@color/background"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -24,12 +25,6 @@
                 android:layout_marginRight="4dp"
                 android:layout_weight="1" />
 
-            <ImageView
-                android:id="@+id/gatewayHelp"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_gravity="right"
-                android:src="@drawable/ic_help"/>
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
@@ -50,7 +45,7 @@
         android:layout_margin="4dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
+        android:background="@color/background"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal">
 
@@ -60,6 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="@string/placeholder"
+
             android:textColor="@color/black"
             android:textColorHint="@color/gray" />
 

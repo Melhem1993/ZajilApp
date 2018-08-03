@@ -7,12 +7,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
@@ -23,6 +25,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.bridgefy.samples.twitter.entities.Peer;
@@ -79,7 +82,8 @@ public class MainActivity extends AppCompatActivity {
         //name = getIntent().getStringExtra(INTENT_USERNAME);
         RecyclerView recyclerView = findViewById(R.id.peer_list);
         recyclerView.setAdapter(peersAdapter);
-
+        recyclerView.addItemDecoration(new DividerItemDecoration(getBaseContext(),
+                DividerItemDecoration.VERTICAL));
         ArrayList<String> a = new ArrayList<String>();
         //String[] a= new String[3];
         if (name.equals( "CampaignManager"))
@@ -372,15 +376,20 @@ private void getname()
         @Override
         public void onBindViewHolder(final PeerViewHolder peerHolder, int position) {
             peerHolder.setPeer(peers.get(position));
+
+
         }
 
         class PeerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
             final TextView mContentView;
+            final ImageView mImageView;
             Peer peer;
 
             PeerViewHolder(View view) {
                 super(view);
                 mContentView = view.findViewById(R.id.peerName);
+                mImageView = view.findViewById(R.id.peerAvatar);
+
                 view.setOnClickListener(this);
             }
 
@@ -389,11 +398,11 @@ private void getname()
 
                 switch (peer.getDeviceType()) {
                     case ANDROID:
-                        this.mContentView.setText(peer.getDeviceName() + " (android)");
+                        this.mContentView.setText(peer.getDeviceName());// + " (android)");
                         break;
 
                     case IPHONE:
-                        this.mContentView.setText(peer.getDeviceName() + " (iPhone)");
+                        this.mContentView.setText(peer.getDeviceName());// + " (iPhone)");
                         break;
                 }
 
@@ -407,6 +416,23 @@ private void getname()
                 } else {
                     this.mContentView.setTextColor(Color.BLUE);
                 }
+
+                if(peer.getDeviceName().equals("CampaignManager"))
+                {
+                    this.mContentView.setText("Campaign Manager");
+
+                    this.mContentView.setTypeface(null, Typeface.BOLD);
+                    this.mImageView.setImageDrawable(getDrawable(R.drawable.staricn));
+
+                }
+                if(peer.getDeviceName().equals("CampaignBroadcast"))
+                {
+                    this.mContentView.setText("Campaign Broadcast");
+
+                    this.mImageView.setImageDrawable(getDrawable(R.drawable.brcicn));
+                }
+
+
             }
 
             public void onClick(View v) {

@@ -4,15 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
-
+    android:orientation="vertical">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
     <ImageView
         android:id="@+id/peerAvatar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        app:srcCompat="@drawable/ic_user" />
+        app:srcCompat="@drawable/usericnbk" />
 
     <TextView
         android:id="@+id/peerName"
@@ -22,4 +27,10 @@
         android:layout_marginTop="24dp"
         android:textAppearance="?attr/textAppearanceListItem"
         tools:text="XXXX-XXXX-XXXX-XXXX" />
+</LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/darker_gray"/>
 </LinearLayout>

@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
@@ -71,8 +72,9 @@ public class TimelineActivity extends AppCompatActivity implements TweetManager.
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         gatewaySwitch.setChecked(true);
-
-        // configure the recyclerview
+        getSupportActionBar().setTitle(target);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        // configure the recyclerview
         RecyclerView tweetsRecyclerView = findViewById(R.id.tweet_list);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this);
         mLinearLayoutManager.setReverseLayout(true);
@@ -114,10 +116,10 @@ public class TimelineActivity extends AppCompatActivity implements TweetManager.
             flushTweets();
     }
 
-    @OnClick(R.id.gatewayHelp)
-    public void onGatewayHelpTap(View v) {
-        Toast.makeText(this, "Toggle this switch if you want this device to act as a Twitter gateway", Toast.LENGTH_LONG).show();
-    }
+//    @OnClick(R.id.gatewayHelp)
+//    public void onGatewayHelpTap(View v) {
+//        Toast.makeText(this, "Toggle this switch if you want this device to act as a Twitter gateway", Toast.LENGTH_LONG).show();
+//    }
 //    @OnClick(R.id.ContactUsers)
 //    public void onContactUsersTap(View v) {
 //        startActivity(new Intent(getBaseContext(), MainActivity.class)
@@ -144,7 +146,7 @@ public class TimelineActivity extends AppCompatActivity implements TweetManager.
 
     @Override
     public void onTweetReceived(Tweet tweet) {
-        if (tweet.gettargetId().equals("CampaignBroadcast") && (username.equals("Abdulrahman") || (username.equals("Ali")))) {
+        if (tweet.gettargetId().equals("CampaignBroadcast")&&target.equals("CampaignManager") && (username.equals("Abdulrahman") || (username.equals("Ali")))) {
             tweetsAdapter.addTweet(tweet);
         }
 
@@ -230,12 +232,20 @@ public class TimelineActivity extends AppCompatActivity implements TweetManager.
         @Override
         public void onBindViewHolder(final TweetViewHolder tweetViewHolder, int position) {
             tweetViewHolder.setTweet(tweets.get(position));
+
+            final Tweet tweet = tweets.get(position);
+            if (tweet.getSender().equals(username)) {
+                tweetViewHolder.itemView.findViewById(R.id.rlayout).setBackground(getDrawable(R.drawable.bubble_in));
+            } else {
+                tweetViewHolder.itemView.findViewById(R.id.rlayout).setBackground(getDrawable(R.drawable.bubble_out));
+            }
         }
 
 
         class TweetViewHolder extends RecyclerView.ViewHolder {
             Tweet tweet;
             @BindView(R.id.txtTweet)       TextView txtTweet;
+
             @BindView(R.id.txtTweetDate)   TextView txtTweetDate;
             @BindView(R.id.txtTweetSender) TextView txtTweetSender;
             @BindView(R.id.imgTweetIcon)   ImageView imgTweetIcon;
@@ -248,7 +258,7 @@ public class TimelineActivity extends AppCompatActivity implements TweetManager.
             void setTweet(Tweet tweet) {
                 this.tweet = tweet;
                 txtTweet.setText(tweet.getContent());
-                txtTweetSender.setText("#" + tweet.getSender());
+                txtTweetSender.setText(tweet.getSender()+":");
                 txtTweetDate.setText(getRelativeDate(tweet.getDate()));
                 imgTweetIcon.setImageDrawable(getDrawable(
                         tweet.isPosted() ? R.drawable.tweet_online : R.drawable.tweet_mesh));
