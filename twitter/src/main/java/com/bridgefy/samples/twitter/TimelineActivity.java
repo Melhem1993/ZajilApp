@@ -248,7 +248,7 @@ public class TimelineActivity extends AppCompatActivity implements TweetManager.
 
             @BindView(R.id.txtTweetDate)   TextView txtTweetDate;
             @BindView(R.id.txtTweetSender) TextView txtTweetSender;
-            @BindView(R.id.imgTweetIcon)   ImageView imgTweetIcon;
+//            @BindView(R.id.imgTweetIcon)   ImageView imgTweetIcon;
 
             TweetViewHolder(View view) {
                 super(view);
@@ -260,8 +260,8 @@ public class TimelineActivity extends AppCompatActivity implements TweetManager.
                 txtTweet.setText(tweet.getContent());
                 txtTweetSender.setText(tweet.getSender()+":");
                 txtTweetDate.setText(getRelativeDate(tweet.getDate()));
-                imgTweetIcon.setImageDrawable(getDrawable(
-                        tweet.isPosted() ? R.drawable.tweet_online : R.drawable.tweet_mesh));
+//                imgTweetIcon.setImageDrawable(getDrawable(
+//                        tweet.isPosted() ? R.drawable.tweet_online : R.drawable.tweet_mesh));
             }
 
             private String getRelativeDate(long datesent) {

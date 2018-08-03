@@ -35,8 +35,7 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="2"
             android:gravity="center"
-            android:text="Use Twitter without Internet!\n\nThis app will send out your tweets as soon as you\'re near somebody that has access to Internet. You can also see tweets sent by people nearby, even if there’s no mobile data available.
-            \n\nWhat you send will be tweeted by @BridgefyBot. Create a unique hashtag to identify your tweets:" />
+            android:text="" />
 
         <LinearLayout
             android:layout_width="match_parent"

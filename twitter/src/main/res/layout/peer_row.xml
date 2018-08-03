@@ -13,8 +13,8 @@
         android:orientation="horizontal">
     <ImageView
         android:id="@+id/peerAvatar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         app:srcCompat="@drawable/usericnbk" />
@@ -24,9 +24,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="37dp"
+        android:textSize="17dp"
         android:textAppearance="?attr/textAppearanceListItem"
         tools:text="XXXX-XXXX-XXXX-XXXX" />
+
+        <ImageView
+            android:id="@+id/peerStar"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="39dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/star" />
+
 </LinearLayout>
     <View
         android:layout_width="match_parent"

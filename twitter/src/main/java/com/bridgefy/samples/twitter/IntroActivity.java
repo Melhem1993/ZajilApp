@@ -65,9 +65,14 @@ public class IntroActivity extends AppCompatActivity {
                 username="Campaign Manager";
                 break;
             default:
+                break;
 
 
         }
+
+        Button button= findViewById(R.id.btn_start);
+        button.performClick();
+
         txtUsername.setText(username);
         target= "broadcast";
 

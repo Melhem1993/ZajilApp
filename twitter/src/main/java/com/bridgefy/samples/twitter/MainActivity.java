@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.ColorLong;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
@@ -382,14 +383,14 @@ private void getname()
 
         class PeerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
             final TextView mContentView;
-            final ImageView mImageView;
+            final ImageView mImageView,mStarView;
             Peer peer;
 
             PeerViewHolder(View view) {
                 super(view);
                 mContentView = view.findViewById(R.id.peerName);
                 mImageView = view.findViewById(R.id.peerAvatar);
-
+                mStarView = view.findViewById(R.id.peerStar);
                 view.setOnClickListener(this);
             }
 
@@ -421,17 +422,37 @@ private void getname()
                 {
                     this.mContentView.setText("Campaign Manager");
 
-                    this.mContentView.setTypeface(null, Typeface.BOLD);
-                    this.mImageView.setImageDrawable(getDrawable(R.drawable.staricn));
+                    //this.mContentView.setTextColor(Color.BLUE);
+                    //this.mContentView.setTypeface(null, Typeface.BOLD);
+                    this.mImageView.setImageDrawable(getDrawable(R.drawable.user1));
+                    this.mStarView.setVisibility(View.VISIBLE);
+                    this.mImageView.setImageDrawable(getDrawable(R.drawable.user1));
 
                 }
                 if(peer.getDeviceName().equals("CampaignBroadcast"))
                 {
                     this.mContentView.setText("Campaign Broadcast");
 
-                    this.mImageView.setImageDrawable(getDrawable(R.drawable.brcicn));
+
+                    this.mImageView.setImageDrawable(getDrawable(R.drawable.cast1));
                 }
 
+                if(peer.getDeviceName().equals("Ali"))
+                {
+
+                    this.mImageView.setImageDrawable(getDrawable(R.drawable.user2));
+                }
+
+                if(peer.getDeviceName().equals("Abdulrahman"))
+                {
+
+                    this.mImageView.setImageDrawable(getDrawable(R.drawable.user3));
+                }
+                if(peer.getDeviceName().equals("Khaled-Brother"))
+                {
+
+                    this.mImageView.setImageDrawable(getDrawable(R.drawable.user4));
+                }
 
             }
 
