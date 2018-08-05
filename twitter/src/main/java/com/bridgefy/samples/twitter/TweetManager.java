@@ -134,7 +134,7 @@ class TweetManager extends MessageListener {
         Log.d(TAG, "onBroadcastMessageReceived: " + message.getContent());
         // build the tweet from the incoming message
         Tweet tweet = Tweet.create(message);
-
+tweet.setPosted(false);
         // if the tweet has already been posted online...
         if (tweet.isPosted() || mPostedTweets.contains(tweet)) {
             Log.v(TAG, "... Received posted Tweet.");
